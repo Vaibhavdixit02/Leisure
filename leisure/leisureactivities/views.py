@@ -4,8 +4,7 @@ from models import *
 from django.views import View
 import simplejson as json
 # Create your views here.
-
-vari = []	
+	
 		
 def AddComment(request):
 	if request.method == 'POST':
