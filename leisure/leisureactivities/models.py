@@ -21,37 +21,43 @@ class Comments(models.Model):
 class PlaceToVisitForm(forms.Form):
 	link_page = models.CharField(max_length = 1000)
 	link_img = models.CharField(max_length = 1000)
+	user_name = models.CharField(max_length = 100)
 		
 class PlaceToVisit(models.Model):
 	link_page = models.CharField(max_length = 1000)
 	link_img = models.CharField(max_length = 1000)
+	user_name = models.CharField(max_length = 100)
 	def __str__(self):
-		return str([self.link_page, self.link_img])
+		return str([self.link_page, self.link_img, self.user_name])
 
 		
 class PlaceToEatForm(forms.Form):
 	link_page = models.CharField(max_length = 1000)
 	link_img = models.CharField(max_length = 1000)
-		
+	user_name = models.CharField(max_length = 100)
+
 class PlaceToEat(models.Model):
 	link_page = models.CharField(max_length = 1000)
 	link_img = models.CharField(max_length = 1000)
+	user_name = models.CharField(max_length = 100)
 	def __str__(self):
-		return str([self.link_page, self.link_img])
+		return str([self.link_page, self.link_img, self.user_name])
 
 class EventForm(forms.Form):
 	event_date = models.CharField(max_length = 100)
 	event_time = models.CharField(max_length = 100)
 	event_place = models.CharField(max_length = 500)
 	event_desc = models.CharField(max_length = 1000)
+	user_name = models.CharField(max_length = 100)
 
 class Events(models.Model):
 	event_date = models.CharField(max_length = 100)
 	event_time = models.CharField(max_length = 100)
 	event_place = models.CharField(max_length = 500)
 	event_desc = models.CharField(max_length = 1000)
+	user_name = models.CharField(max_length = 100)
 	def __str__(self):
-		return str([self.event_date,self.event_time,self.event_place,self.event_desc])
+		return str([self.event_date,self.event_time,self.event_place,self.event_desc,self.user_name])
 
 	
 		

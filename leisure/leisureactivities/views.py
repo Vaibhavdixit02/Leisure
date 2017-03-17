@@ -47,16 +47,82 @@ def AddEvent(request):
 			Event = Events.objects.create(event_date = event_date, event_time = event_time, event_place = event_place, event_desc = event_desc)
 	return MainPage(request)	
 
+def ShowComment(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+	all_places_eat = PlaceToEat.objects.all()
+	all_places = PlaceToVisit.objects.all()
+	all_comments = Comments.objects.all()
+	all_events = Events.objects.all()
+	comments = Comments.objects.filter(user_name = user_name)
+	return render(request, 'app/leisurefrontend.html', context = {"comments" : comments, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
+
+def ShowEvent(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+	all_places_eat = PlaceToEat.objects.all()
+	all_places = PlaceToVisit.objects.all()
+	all_comments = Comments.objects.all()
+	all_events = Events.objects.all()
+	events = Events.objects.filter(user_name = user_name)
+	#events = str([eventu.event_time, eventu.event_date, eventu.event_place, eventu.event_desc])
+	return render(request, 'app/leisurefrontend.html', context = {"events" : events, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
+
+def ShowVisit(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+	all_places_eat = PlaceToEat.objects.all()
+	all_places = PlaceToVisit.objects.all()
+	all_comments = Comments.objects.all()
+	all_events = Events.objects.all()
+	visits = PlaceToVisit.objects.filter(user_name = user_name)
+	return render(request, 'app/leisurefrontend.html', context = {"visits" : visits, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
+
+def ShowEat(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+	all_places_eat = PlaceToEat.objects.all()
+	all_places = PlaceToVisit.objects.all()
+	all_comments = Comments.objects.all()
+	all_events = Events.objects.all()
+	eats = PlaceToEat.objects.filter(user_name = user_name)
+	return render(request, 'app/leisurefrontend.html', context = {"eats" : eats, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
+
+def DelComment(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+		comment_content = request.POST.get('comment_content')
+		Comments.objects.filter(user_name = user_name, comment_content = comment_content).delete()
+	return MainPage(request)
+
+def DelEvent(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+		event_date = request.POST.get('event_date')
+		event_time = request.POST.get('event_time')
+		event_place = request.POST.get('event_place')
+		Events.objects.filter(user_name = user_name, event_date = event_date, event_time = event_time, event_place = event_place).delete()
+	return MainPage(request)
+
+def DelVisit(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+		link_img = request.POST.get('link_img')
+		PlaceToVisit.objects.filter(user_name = user_name, link_img = link_img).delete()
+	return MainPage(request)
+
+def DelEat(request):
+	if request.method == 'POST':
+		user_name = request.POST.get('user_name')
+		link_img = request.POST.get('link_img')
+		PlaceToEat.objects.filter(user_name = user_name, link_img = link_img).delete()
+	return MainPage(request)
+
 
 def MainPage(request):
 	all_places_eat = PlaceToEat.objects.all()
 	all_places = PlaceToVisit.objects.all()
 	all_comments = Comments.objects.all()
 	all_events = Events.objects.all()
-	return render(request, 'app/webpage.html', context = {"all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
-	
-
-	
-		
-	
+	return render(request, 'app/leisurefrontend.html', context = {"all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
 	
