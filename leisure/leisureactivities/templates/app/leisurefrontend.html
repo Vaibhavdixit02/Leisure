@@ -16,19 +16,19 @@
     <![endif]-->
   </head>
    
-  <body>
+  <body style="background-color: #783333">
       
       
     <div class = "page-header">
    		
-      <h1>Leisure Activities</h1>
+      <h1 align="center" style="color: #e8e1e1">Leisure Activities</h1>
    	 	
    
     </div>
       
 
     
-
+    <div style="background-color: #b4f1f5; height: 300px">
     <h3>Places to visit</h3>
     <a href="#places" data-toggle="collapse">Add article</a>
     <form class="collapse" id="places" method="post" action="/leisureactivities/addplacetovisit/">
@@ -41,6 +41,7 @@
       <input type="text" name="user_name" class="form-inline" style="width: 200px">
       <button type="submit" class="btn btn-default" id="add">Add</button>
     </form>
+
      
        
     <span style="display:block; height: 10px;"></span>
@@ -48,8 +49,9 @@
       <a href= {{ i.link_page }} ><img src= {{ i.link_img }} style="position: static;width: 200px; height: 200px;"></a>
       <span style="display:inline-block; width: 50px;"></span>
     {% endfor %}
-
+    </div>
     <span style="display:block; height: 20px;"></span>
+    <div style="background-color: #c6f29a;height: 300px">
     <h3> Grab a bite</h3>
     <a href="#placeseat" data-toggle="collapse">Add article</a>
     <form class="collapse" id="placeseat" method="post" action="/leisureactivities/addplacetoeat/">
@@ -69,9 +71,10 @@
       <a href= {{ i.link_page }} ><img src= {{ i.link_img }} style="position: static;width: 200px; height: 200px;"></a>
       <span style="display:inline-block; width: 50px;"></span>
     {% endfor %}
+    </div>
     <!--<h3 style="position: absolute;left: 740px; top: 730px">Delete item</h3>-->
       
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="position: absolute; left: 735px; top: 725px">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="position: absolute; left: 735px; top: 775px;width: 550px">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="myNavbar" >
           <ul class="nav navbar-nav">
@@ -83,28 +86,35 @@
         </div>
       </div>
     </nav>
-    <div style="height: 50px;width: 550px;border: 2px solid black; position:absolute;left: 735px; top: 790px; overflow: auto;" data-spy="scroll" data-target=".navbar" data-offset="50">   
+    <div style="height: 50px;width: 550px;border: 2px solid black; position:absolute;left: 735px; top: 830px; overflow: auto; background-color: #f29aaf" data-spy="scroll" data-target=".navbar" data-offset="50">
+      <div style="background-color: #7583b0;height: 50px">   
       <form class="container-fluid" id="delete_comment" method="post" action="/leisureactivities/showcomment/">
         {% csrf_token %}
         <label>Username</label>
-        <input type="text" name="user_name" style="width: 200px">
+        <input type="text" name="user_name" style="width: 200px;">
         <button type="submit" class="btn btn-default" id="list_comments">Show Comments</button>
       </form>
+      </div>
       <span style="display: block; height: 100px"></span>
+      <div style="background-color: #a375b0;height: 50px">
       <form class="container-fluid" id="delete_event" method="post" action="/leisureactivities/showevent/">
         {% csrf_token %}
         <label>Username</label>
         <input type="text" name="user_name" style="width: 200px">
         <button type="submit" class="btn btn-default" id="list_events" >Show Events</button>
       </form>
+      </div>
       <span style="display: block; height: 100px"></span>
+      <div style="background-color: #75b0a4;height: 50px">
       <form class="container-fluid" id="delete_eat" method="post" action="/leisureactivities/showeat/">
         {% csrf_token %}
         <label>Username</label>
         <input type="text" name="user_name" style="width: 200px">
         <button type="submit" class="btn btn-default" id="list_eat">Show place to eat</button>
       </form>
+      </div>
       <span style="display: block; height: 100px"></span>
+      <div style="background-color: #a5b075;height: 50px">
       <form class="container-fluid" id="delete_visit" method="post" action="/leisureactivities/showvisit/" >
         {% csrf_token %}
         <label>Username</label>
@@ -112,8 +122,10 @@
         <button type="submit" class="btn btn-default" id="list_visit">Show place to visit</button>
         <span style="display: block; height: 50px"></span>
       </form>
+      </div>
     </div>
-    <div style="height:150px;width: 550px;border: 2px solid black; position:absolute;left: 735px; top: 1140px; overflow: auto;" >
+
+    <div style="height:150px;width: 550px;border: 2px solid black; position:absolute;left: 735px; top: 1180px; overflow: auto; background-color: #f3866b" >
       <ul class="nav nav-tabs">
         <li><a data-toggle="tab" href="#delete_comment_1" style="font-size: 12px">Delete Comment</a></li>
         <li><a data-toggle="tab" href="#delete_event_1" style="font-size: 12px">Delete Event</a></li>
@@ -122,7 +134,7 @@
       </ul>
 
       <div class="tab-content">
-        <div class = "tab-pane fade" id="delete_comment_1">
+        <div class = "tab-pane fade" id="delete_comment_1" style="background-color: #7583b0;height: 150px">
           <form class="form-inline" id="delete_comment_1" method="post" action="/leisureactivities/delcomment/">
             {% csrf_token %}
             <label>Username</label>
@@ -133,7 +145,7 @@
             <button type="submit" class="btn btn-default" id="del_comment">Delete Comment</button>
           </form>
         </div>
-        <div class = "tab-pane fade" id="delete_event_1">
+        <div class = "tab-pane fade" id="delete_event_1" style="background-color: #a375b0;height: 150px">
           <form class="form-inline" method="post" action="/leisureactivities/delevent/">
             {% csrf_token %}
             <label>Username</label>
@@ -147,7 +159,7 @@
             <button type="submit" class="btn btn-default" id="del_event">Delete Event</button>
           </form>
         </div>
-        <div class = "tab-pane fade" id="delete_visit_1">
+        <div class = "tab-pane fade" id="delete_visit_1" style="background-color: #75b0a4;height: 150px">
           <form class="form-inline"  id="delete_visit_1" method="post" action="/leisureactivities/delvisit/">
             {% csrf_token %}
             <label>Username</label>
@@ -158,7 +170,7 @@
             <button type="submit" class="btn btn-default" id="del_visit">Delete Place To Visit</button>
           </form>
         </div>
-        <div class = "tab-pane fade" id="delete_eat_1">
+        <div class = "tab-pane fade" id="delete_eat_1" style="background-color:#a5b075;height: 150px">
           <form class="form-inline"  id="delete_eat_1" method="post" action="/leisureactivities/deleat/">
             {% csrf_token %}
             <label>Username</label>
@@ -172,6 +184,7 @@
       </div>
     </div>
     <span style="display:block; height: 20px;"></span>
+    <div style="background-color: #f36bed; width: 700px">
     <h3>Comments</h3>
     <a href="#comment_form" data-toggle = "collapse">Add Comment</a>
     <form class="collapse" id="comment_form" method="post" action="/leisureactivities/addcomment/">
@@ -185,8 +198,9 @@
       <button type="submit" class="btn btn-default" id="add">Add</button>
 
     </form>
+    </div>
 
-    <div style="height: 300px;width: 550px;border: 2px solid black; position:absolute;left: 735px; top: 840px; overflow: auto;">
+    <div style="height: 300px;width: 550px;border: 2px solid black; position:absolute;left: 735px; top: 880px; overflow: auto; background-color: #f29aaf">
       {% for i in comments %}
         <ul>
           <li>{{ i.comments }}</li>
@@ -230,22 +244,21 @@
       {% endfor %}
     </div>
 
-    <div style="height: 200px;width: 700px; overflow: auto; border: 2px solid black">
+    <div style="height: 200px;width: 700px; overflow: auto; border: 2px solid black; background-color: #f36bed">
       {% for i in all_comments %}
         <ul>
           <li>{{ i.user_name }} - {{ i.comment_content }}</li>
         </ul>
       {% endfor %}
     </div>
-      
-     
+    <div style="background-color: #7f828c; width: 700px"> 
     <h3 >Upcoming Events</h3>
     <a href="#event_form" data-toggle = "collapse" >Add Event</a>
     <form class="collapse form-inline" id="event_form" method="post" action="/leisureactivities/addevent/">
       {% csrf_token %}
-      <label >Time</label>
+      <label>Time</label>
       <input type="time" name="event_time" style="width: 200px">
-      <label>Date</label>
+      <label>From Date</label>
       <input type="date" name="event_date" class="form-inline" style="width: 200px">
       <br>
       <label >Place</label>
@@ -261,7 +274,7 @@
         <thead>
           <tr>
             <th>Time</th>
-            <th>Date</th>
+            <th>From Date</th>
             <th>Place</th>
             <th>Description</th>
           </tr>
@@ -275,8 +288,9 @@
               <td>{{ i.event_desc }}</td>
             </tr>
           {% endfor %}
-        </tbod>  
+        </tbody>  
       </table>
+    </div>
     </div>
 
       
