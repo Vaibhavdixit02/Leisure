@@ -30,7 +30,9 @@ def DeleteItem(request):
 
 def SearchItem(request):
 	if request.method == 'POST':
-		finditems=SellModel.objects.filter(item_type = request.POST.get("item_type"))
+		finditems=SellModel.objects.filter(item_type__iexact = request.POST.get("item_type"))
+		for item in finditems:
+			item.item_img = str(item.item_img)[15:]
 	return render(request, 'app/buysellfrontend.html', context = {"finditems" : finditems})
 
 def MainPage(request):
