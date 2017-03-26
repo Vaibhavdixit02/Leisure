@@ -3,9 +3,11 @@ from django.http import *
 from models import *
 from django.views import View
 import simplejson as json
+from django.views.decorators.clickjacking import xframe_options_exempt
+
 # Create your views here.
 	
-		
+@xframe_options_exempt		
 def AddComment(request):
 	if request.method == 'POST':
 		form = CommentsForm(request.POST)
@@ -15,7 +17,7 @@ def AddComment(request):
     		Comment = Comments.objects.create(comment_content = comment_content, user_name = user_name)
     	return MainPage(request)
     	
-
+@xframe_options_exempt
 def AddPlaceToVisit(request):
 	if request.method == 'POST':
 		form = PlaceToVisitForm(request.POST)
@@ -25,7 +27,7 @@ def AddPlaceToVisit(request):
 			Place = PlaceToVisit.objects.create(link_page = link_page, link_img = link_img)
 	return MainPage(request)
 
-
+@xframe_options_exempt
 def AddPlaceToEat(request):
 	if request.method == 'POST':
 		form = PlaceToEatForm(request.POST)
@@ -35,6 +37,7 @@ def AddPlaceToEat(request):
 			Place = PlaceToVisit.objects.create(link_page = link_page, link_img = link_img)
 	return MainPage(request)
 
+@xframe_options_exempt
 def AddEvent(request):
 	if request.method == 'POST':
 		form = EventForm(request.POST)
@@ -46,6 +49,7 @@ def AddEvent(request):
 			Event = Events.objects.create(event_date = event_date, event_time = event_time, event_place = event_place, event_desc = event_desc)
 	return MainPage(request)	
 
+@xframe_options_exempt
 def ShowComment(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -56,6 +60,7 @@ def ShowComment(request):
 	comments = Comments.objects.filter(user_name = user_name)
 	return render(request, 'app/leisurefrontend.html', context = {"comments" : comments, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
 
+@xframe_options_exempt
 def ShowEvent(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -67,6 +72,7 @@ def ShowEvent(request):
 	#events = str([eventu.event_time, eventu.event_date, eventu.event_place, eventu.event_desc])
 	return render(request, 'app/leisurefrontend.html', context = {"events" : events, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
 
+@xframe_options_exempt
 def ShowVisit(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -77,6 +83,7 @@ def ShowVisit(request):
 	visits = PlaceToVisit.objects.filter(user_name = user_name)
 	return render(request, 'app/leisurefrontend.html', context = {"visits" : visits, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
 
+@xframe_options_exempt
 def ShowEat(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -87,6 +94,7 @@ def ShowEat(request):
 	eats = PlaceToEat.objects.filter(user_name = user_name)
 	return render(request, 'app/leisurefrontend.html', context = {"eats" : eats, "all_places_eat" : all_places_eat, "all_places" : all_places, "all_comments" : all_comments, "all_events" : all_events})
 
+@xframe_options_exempt
 def DelComment(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -94,6 +102,7 @@ def DelComment(request):
 		Comments.objects.filter(user_name = user_name, comment_content = comment_content).delete()
 	return MainPage(request)
 
+@xframe_options_exempt
 def DelEvent(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -103,6 +112,7 @@ def DelEvent(request):
 		Events.objects.filter(user_name = user_name, event_date = event_date, event_time = event_time, event_place = event_place).delete()
 	return MainPage(request)
 
+@xframe_options_exempt
 def DelVisit(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -110,6 +120,7 @@ def DelVisit(request):
 		PlaceToVisit.objects.filter(user_name = user_name, link_img = link_img).delete()
 	return MainPage(request)
 
+@xframe_options_exempt
 def DelEat(request):
 	if request.method == 'POST':
 		user_name = request.POST.get('user_name')
@@ -118,6 +129,7 @@ def DelEat(request):
 	return MainPage(request)
 
 
+@xframe_options_exempt
 def MainPage(request):
 	all_places_eat = PlaceToEat.objects.all()
 	all_places = PlaceToVisit.objects.all()

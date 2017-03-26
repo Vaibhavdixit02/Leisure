@@ -18,6 +18,7 @@ class SellForm(forms.Form):
 	seller_room = models.CharField(max_length = 20)
 	seller_hostel = models.CharField(max_length = 30)
 	seller_contact = models.CharField(max_length = 11)
+	user_name = models.CharField(max_length = 100)
 
 class SellModel(models.Model):
 	item_type = models.CharField(max_length = 100)
@@ -28,5 +29,6 @@ class SellModel(models.Model):
 	seller_room = models.CharField(max_length = 20)
 	seller_hostel = models.CharField(max_length = 30)
 	seller_contact = models.CharField(max_length = 11)
+	user_name = models.CharField(max_length = 100)
 		
 

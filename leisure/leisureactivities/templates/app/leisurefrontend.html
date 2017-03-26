@@ -5,7 +5,7 @@
     <meta charset = "utf-8">
     <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-    <title>Bootstrap 101 Template</title>
+    <title>Leisure Activities</title>
     <!-- Bootstrap -->
     <link href = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -14,6 +14,28 @@
     <script src = "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src = "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    {% load static %}
+    <script src ="{% static 'leisureactivities/jquery-3.2.0.min.js' %}"></script>
+    <script type="text/javascript">
+    var username = "";
+      $(document).ready(function(){
+        var json = JSON.stringify({REQUEST: ["get_username"]});
+        $.ajax({url:"http://192.168.101.1:8000/request/", dataType:"jsonp", jsonp:"callback", data:{REQUEST: json}, success: function(data){
+            username = (data["username"]);
+            //alert(username);
+            //document.getElementById('USERNAMEHEREo').value = username;
+            $("#USERNAMEHERE1").val(username);
+            $("#USERNAMEHERE2").val(username);
+            $("#USERNAMEHERE3").val(username);
+            $("#USERNAMEHERE4").val(username);
+            $("#USERNAMEHERE5").val(username);
+            $("#USERNAMEHERE6").val(username);
+            $("#USERNAMEHERE7").val(username);
+            $("#USERNAMEHERE8").val(username);
+        }});
+      });
+    </script>
+
   </head>
    
   <body style="background-color: #783333">
@@ -25,7 +47,7 @@
    	 	
    
     </div>
-      
+    
 
     
     <div style="background-color: #b4f1f5; height: 300px">
@@ -37,8 +59,7 @@
       <input type="text" class="form-control" name="link_page" style="width: 500px">
       <label>Link of image for thumbnail</label>
       <input type="text" name="link_img" class="form-control" style="width: 500px">
-      <label>Username</label>
-      <input type="text" name="user_name" class="form-inline" style="width: 200px">
+      <input type="hidden" name="user_name" id="USERNAMEHERE1" value= " " style="width: 1px;height: 1px">
       <button type="submit" class="btn btn-default" id="add">Add</button>
     </form>
 
@@ -46,8 +67,8 @@
        
     <span style="display:block; height: 10px;"></span>
     {% for i in all_places %}
-      <a href= {{ i.link_page }} ><img src= {{ i.link_img }} style="position: static;width: 200px; height: 200px;"></a>
-      <span style="display:inline-block; width: 50px;"></span>
+      <a href= {{ i.link_page }} ><img src= {{ i.link_img }} style="position:static;width: 200px; height: 200px;"></a>
+      <span style="display: inline-block;width: 50px"></span>
     {% endfor %}
     </div>
     <span style="display:block; height: 20px;"></span>
@@ -60,15 +81,12 @@
       <input type="text" class="form-control" name="link_page" style="width: 500px">
       <label>Link of image for thumbnail</label>
       <input type="text" name="link_img" class="form-control" style="width: 500px">
-      <label>Username</label>
-      <input type="text" name="user_name" class="form-inline" style="width: 200px">
+      <input type="hidden" name="user_name" id="USERNAMEHERE2" value= " " style="width: 1px;height: 1px">
       <button type="submit" class="btn btn-default" id="add">Add</button>
     </form>
-     
-       
     <span style="display:block; height: 10px;"></span>
     {% for i in all_places_eat %}
-      <a href= {{ i.link_page }} ><img src= {{ i.link_img }} style="position: static;width: 200px; height: 200px;"></a>
+      <a href= {{ i.link_page }} ><img src= {{ i.link_img }} style="position:static;width: 200px; height: 200px;"></a>
       <span style="display:inline-block; width: 50px;"></span>
     {% endfor %}
     </div>
@@ -137,8 +155,7 @@
         <div class = "tab-pane fade" id="delete_comment_1" style="background-color: #7583b0;height: 150px">
           <form class="form-inline" id="delete_comment_1" method="post" action="/leisureactivities/delcomment/">
             {% csrf_token %}
-            <label>Username</label>
-            <input type="text" name="user_name" style="width: 200px">
+            <input type="hidden" name="user_name" id="USERNAMEHERE3" value= " " style="width: 1px;height: 1px">
             <br>
             <label>Comment</label>
             <input type="text" name="comment_content" style="width: 400px">
@@ -148,8 +165,7 @@
         <div class = "tab-pane fade" id="delete_event_1" style="background-color: #a375b0;height: 150px">
           <form class="form-inline" method="post" action="/leisureactivities/delevent/">
             {% csrf_token %}
-            <label>Username</label>
-            <input type="text" name="user_name" style="width: 200px">
+            <input type="hidden" name="user_name" id="USERNAMEHERE4" value= " " style="width: 1px;height: 1px">
             <label>Date</label>
             <input type="text" name="event_date" style="width: 200px">
             <label>Time</label>
@@ -162,8 +178,7 @@
         <div class = "tab-pane fade" id="delete_visit_1" style="background-color: #75b0a4;height: 150px">
           <form class="form-inline"  id="delete_visit_1" method="post" action="/leisureactivities/delvisit/">
             {% csrf_token %}
-            <label>Username</label>
-            <input type="text" name="user_name" class="form-inline" style="width: 200px">
+            <input type="hidden" name="user_name" id="USERNAMEHERE5" value= " " style="width: 1px;height: 1px">
             <br>
             <label>Link of thumbnail</label>
             <input type="text" name="link_img" class="form-inline" style="width: 300px" placeholder="Drag and drop the image from above">
@@ -173,8 +188,7 @@
         <div class = "tab-pane fade" id="delete_eat_1" style="background-color:#a5b075;height: 150px">
           <form class="form-inline"  id="delete_eat_1" method="post" action="/leisureactivities/deleat/">
             {% csrf_token %}
-            <label>Username</label>
-            <input type="text" name="user_name" class="form-inline" style="width: 200px">
+            <input type="hidden" name="user_name" id="USERNAMEHERE6" value= " " style="width: 1px;height: 1px">
             <br>
             <label>Link of thumbnail</label>
             <input type="text" name="link_img" class="form-inline" style="width: 300px" placeholder="Drag and drop the image from above">
@@ -193,8 +207,7 @@
       <label>Comment</label>
       <input type="text" class="form-control" name="comment_content" style="width: 500px">
       <br>
-      <label>Username</label>
-      <input type="text" class="form-control" name="user_name" style="width: 300px">
+      <input type="hidden" name="user_name" id="USERNAMEHERE7" value= "" style="width: 1px;height: 1px">
       <button type="submit" class="btn btn-default" id="add">Add</button>
 
     </form>
@@ -265,6 +278,7 @@
       <input type="text" name="event_place" style="width: 200px">
       <label>Description</label>
       <input type="text" name="event_desc" style="width: 200px; height: 100px">
+      <input type="hidden" name="user_name" id="USERNAMEHERE8" value= " " style="width: 1px;height: 1px">
       <br>
       <button type="submit" class="btn btn-default" id="add" >Add</button>
     </form>
